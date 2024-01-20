@@ -6,9 +6,10 @@ public static class ResourceManager
 {
     private const string prefabPath = "Prefab/";
 
-    public static GameObject GetPrefab(string prefabName)
+    public static GameObject GetPrefab(string prefabName, Transform parent = null)
     {
         var prefab = Resources.Load<GameObject>($"{prefabPath}{prefabName}");
-        return prefab;
+        var obj = parent == null ? Object.Instantiate(prefab) : Object.Instantiate(prefab,parent);
+        return obj;
     }
 }
